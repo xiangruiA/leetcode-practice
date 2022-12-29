@@ -55,14 +55,27 @@ class Solution(object):
         :rtype: List[int]
         """
 
-        # 输入3个数组 返回一个数组，要求改数组出现过至少两次
-        for i in range (len(nums)):
-            for q in range(i+1,len(nums)):
-                if nums[i]  + nums[q] == target:
-                    return [i,q]
+        # # 输入3个数组 返回一个数组，要求改数组出现过至少两次
+        # for i in range (len(nums)):
+        #     for q in range(i+1,len(nums)):
+        #         if nums[i]  + nums[q] == target:
+        #             return [i,q]
+        #
+
+
+        # 方法二 使用hashtable  思路：遍历列表一次，target - x 如果在hashtable中 则返回x 和hashtable中的位置
+        hashtable = {}
+        for i, item in enumerate(nums):
+            if (target - item) in hashtable:
+                return [i,hashtable[target - item]]
+            hashtable[nums[i]] = i
+            print(hashtable)
+
 
 a = Solution
 b = Solution.twoSum(a,[3,3],6)
+# 字典类型 前面是值，后面是键
+
 print(b)
         # return out
 # leetcode submit region end(Prohibit modification and deletion)
